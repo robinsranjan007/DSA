@@ -1,44 +1,39 @@
-function foursum(arr,tar){
+function foursum(arr) {
+  let res = [];
+  let n = arr.length;
 
-let res=[]
- 
- for(let i=0;i<arr.length;i++)
- {
-     if(i>0&& arr[i]===arr[i-1])continue
-     for(let j=i+1;j<arr.length;j++)
-     {
-     if(j>i+1&& arr[j]===arr[j-1])continue
-         
-         let k=j+1
-         let l= arr.length-1
-         while(k<l)
-         {
-         let sum=arr[i]+arr[j]+arr[k]+arr[l]
-             if(sum<tar)
-             {
-                 k++
-             }
-             else if(sum>tar)
-             {
-                 l--
-             }
-             else
-             {
-                  res.push([arr[i],arr[j],arr[k],arr[l]])
-                  k++
-                  l--
-                  while( k < l && arr[k]===arr[k-1])k++
-                  while(k<l &&arr[l]===arr[l+1])l--
-             }
-             
-         }
-         
-         
-     }
- }
- return res
-  
-    
+  arr.sort((a, b) => a - b); // Sort numerically
+
+  for (let i = 0; i < n - 3; i++) {
+    if (i > 0 && arr[i] === arr[i - 1]) continue;
+
+    for (let j = i + 1; j < n - 2; j++) {
+      if (j > i + 1 && arr[j] === arr[j - 1]) continue;
+
+      let left = j + 1;
+      let right = n - 1;
+
+      while (left < right) {
+        let sum = arr[i] + arr[j] + arr[left] + arr[right];
+
+        if (sum > 0) {
+          right--;
+        } else if (sum < 0) {
+          left++;
+        } else {
+          res.push([arr[i], arr[j], arr[left], arr[right]]);
+          left++;
+          right--;
+
+          // Skip duplicates
+          while (left < right && arr[left] === arr[left - 1]) left++;
+          while (left < right && arr[right] === arr[right + 1]) right--;
+        }
+      }
+    }
+  }
+
+  return res;
 }
 
 console.log(foursum([-2,-2,-2,-1,-1,-1,0,0,0,2,2,2,2],8))

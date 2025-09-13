@@ -1,4 +1,4 @@
-//sort o,1,2
+//sort 0,1,2
 
 function dutchalgo(arr) {
   let low = 0;

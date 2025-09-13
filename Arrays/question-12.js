@@ -2,62 +2,68 @@
 //USING TWO POINTER CONCEPT
 //two pointer approach
 
-function unionsorted(arr1,arr2)
-{
- let i=0;
- let j=0
- let unionarr=[]
+ function unionsortedarrays(arr1,arr2)
+ {
+    let arr=[]
+    
+    let i=0;
+    let j=0
+    
+    while(i<arr1.length && j<arr2.length)
+    {
+        
+        if(arr1[i]<arr2[j] )
+        {
+            if(arr.length===0 || arr[arr.length-1]!=arr1[i])
+            {
+            arr.push(arr1[i])
+            }
+            i++
+        }
+        else if(arr1[i]>arr2[j]  )
+        {
+            if(arr.length===0 ||arr[arr.length-1]!==arr2[j])
+            {
+              arr.push(arr2[j])
+            }
+            j++
+        }
+        else
+        {
+            if(arr.length ===0 || arr[arr.length-1]!==arr1[i])
+            {
+                arr.push(arr1[i])
+            }
+            i++
+            j++
+        }
+    }
+    
+    while(i<arr1.length)
+    {
+        if(arr.length===0 || arr[arr.length-1]!=arr1[i])
+            {
+            arr.push(arr1[i])
+            }
+            i++
+    }
+    while(j<arr2.length)
+    {
+        if(arr.length===0 || arr[arr.length-1]!=arr2[j])
+            {
+            arr.push(arr2[j])
+            }
+            j++
+    }
+     
+     return arr
+     
+ }
  
-
-while(i<arr1.length && j<arr2.length)
-{
-     if(arr1[i]<arr2[j])
-     {
-         if(!unionarr.includes(arr1[i]))
-         {
-             unionarr.push(arr1[i])
-         }
-         i++
-     }
-    else if(arr1[i]>arr2[j])
-     {
-         if(!unionarr.includes(arr2[j]))
-         {
-             unionarr.push(arr2[j])
-         }
-         j++
-     }
-     else
-     {
-         if (!unionarr.includes(arr1[i])) unionarr.push(arr1[i]);
-            i++;
-            j++;
-     }
-    
-    
-    
-}
-
-while(i<arr1.length)
-{
-    if(!unionarr.includes(arr1[i])) {
-        unionarr.push(arr1[i])
-    }
-    i++
-}
-while(j<arr2.length)
-{
-    if(!unionarr.includes(arr2[j])) {
-        unionarr.push(arr2[j])
-    }
-    j++
-}
-
-
-
- return unionarr
-  
-}
+ 
+ console.log(unionsortedarrays([1,1,2,3,4,5],[2,3,4,4,5]))
+ 
+ 
 
 console.log(unionsorted([1,1,2,3,4,5],[0,0,2,3,4,4,5,6,6,7]))
 

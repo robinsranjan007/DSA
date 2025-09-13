@@ -58,7 +58,7 @@ for(let i=0;i<arr.length;i++)
         let k= -(arr[i]+arr[j])
         if(s.has(k))
         {
-                let temparr=[arr[i],arr[j],arr[k]].sort((a,b)=>a-b)
+                let temparr=[arr[i],arr[j],k].sort((a,b)=>a-b)
                 res.add(JSON.stringify(temparr))       
         }
         s.add(arr[j])
